@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import axios from "axios";
 
 const handler = NextAuth({
   providers: [
@@ -21,8 +22,16 @@ const handler = NextAuth({
         if (!email || !password) {
           return null;
         }
-        // TODO ADD AXIOS FETCH HERE TO BACKEND.
-        return { user: "Hello", id: "1", email: "hellomoto@email.com" };
+        const url = process.env.BE_URL + "/auth/login";
+        try {
+          const { data: response } = await axios.post(url, {
+            emailAddress: email,
+            password,
+          });
+          return response.data;
+        } catch (error: any) {
+          return null;
+        }
       },
     }),
   ],
