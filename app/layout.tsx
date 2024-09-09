@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import NavBar from "./components/navBar";
+import { NextUIProvider } from "@nextui-org/react";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const helvetic = localFont({
+  src: "./fonts/Helvetica.ttf",
+  variable: "--font-helvetica",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const helveticBold = localFont({
+  src: "./fonts/Helvetica-Bold.ttf",
+  variable: "--font-helvetica-bold",
+  weight: "100 900",
+});
+const aksara = localFont({
+  src: "./fonts/Aksara.otf",
+  variable: "--font-aksara",
   weight: "100 900",
 });
 
@@ -26,9 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${helvetic.variable} ${helveticBold.variable} ${aksara.variable} antialiased`}
       >
-        {children}
+        <NextUIProvider>
+          <NavBar />
+          {children}
+        </NextUIProvider>
       </body>
     </html>
   );
