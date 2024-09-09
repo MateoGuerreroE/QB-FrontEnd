@@ -62,8 +62,10 @@ export default function MovieCard({
           </div>
           <div className="flex flex-row justify-center gap-16">
             <div
-              className={`flex flex-col ${
-                isTitleLong && title.length > 40 ? "gap-0.5" : "gap-2"
+              className={`flex flex-col ugluphone:gap-0 ${
+                isTitleLong && title.length > 40
+                  ? "normalphone:gap-0.5"
+                  : "normalphone:gap-2"
               }`}
             >
               <label className="text-sm text-center opacity-95 font-aksara">
@@ -78,8 +80,10 @@ export default function MovieCard({
               />
             </div>
             <div
-              className={`flex flex-col ${
-                isTitleLong && title.length > 40 ? "gap-0.5" : "gap-2"
+              className={`flex flex-col ugluphone:gap-0 ${
+                isTitleLong && title.length > 40
+                  ? "normalphone:gap-0.5"
+                  : "normalphone:gap-2"
               }`}
             >
               <label className="text-sm text-center opacity-95 font-aksara">

@@ -11,6 +11,10 @@ const config: Config = {
     flowbite.content(),
   ],
   theme: {
+    screens: {
+      normalphone: "400px",
+      uglyphone: "300px",
+    },
     extend: {
       fontFamily: {
         helvetica: "var(--font-helvetica)",
@@ -24,6 +28,13 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [nextui(), flowbite.plugin()],
+  plugins: [
+    nextui({
+      themes: {
+        light: { colors: { primary: "#f0b90b" } },
+      },
+    }),
+    flowbite.plugin(),
+  ],
 };
 export default config;
