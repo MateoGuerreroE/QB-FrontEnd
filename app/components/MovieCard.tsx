@@ -37,7 +37,7 @@ export default function MovieCard({
         <Image
           src={image}
           alt="movie_image"
-          className="h-2/3 object-cover shadow-lg shadow-black/50"
+          className="h-2/3 shadow-lg shadow-black/50"
           width={500}
           height={500}
         />
