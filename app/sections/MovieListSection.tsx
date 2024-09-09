@@ -4,13 +4,17 @@ import MovieCardList from "../components/MovieCardList";
 type ComponentProps = {
   title: string;
   darkMode?: boolean;
+  path?: "popular" | "now_playing" | "top_rated";
 };
 
 export default async function MovieListSection({
   title,
   darkMode = true,
+  path,
 }: ComponentProps) {
-  const res = await fetch(`${process.env.BE_URL}/utils/movies`);
+  const res = await fetch(
+    `${process.env.BE_URL}/utils/movies${path ? `?path=${path}` : ""}`
+  );
   const data = await res.json();
 
   return (

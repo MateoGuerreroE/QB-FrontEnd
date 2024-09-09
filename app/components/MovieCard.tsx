@@ -22,7 +22,7 @@ export default function MovieCard({
   releaseDate,
   dark = false,
 }: ComponentProps) {
-  const isTitleLong = title.length > 25;
+  const isTitleLong = title.length > 23;
   return (
     <div className="aspect-[2/3] max-w-[350px]">
       <div
@@ -30,13 +30,15 @@ export default function MovieCard({
           dark ? "bg-[#262626]" : "bg-gray-500"
         }`}
       >
-        <Image
-          src={image}
-          alt="movie_image"
-          className="h-2/3 shadow-lg shadow-black/50"
-          width={700}
-          height={700}
-        />
+        <div className="h-2/3 shadow-lg shadow-black/50 overflow-hidden relative">
+          <Image
+            src={image}
+            alt="movie_image"
+            className="w-full h-full object-fit"
+            width={700}
+            height={700}
+          />
+        </div>
         <div
           className={`flex flex-col p-3 mt-2 gap-1 h-1/3 ${
             dark ? "text-white" : "text-black"
