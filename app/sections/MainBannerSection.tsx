@@ -35,11 +35,11 @@ export default function MainBannerSection() {
       </Carousel>
       <div className="text-white text-sm">
         Hi evaluator! This site is under construction. 48 hours where at least
-        20 are spent sleeping/living are not enugh, mostly as there's no clue of
-        what's the project about or duration until you already start It, and I'm
-        currently working, so there's about -16 hours to that count (as I
-        started It on Tuesday) Will be finishing It soon, wether It counts or
-        not. Thank you!
+        20 are spent sleeping/living are not enugh, mostly as theres no clue of
+        whats the project about or duration until you already start It, and Im
+        currently working, so theres about -16 hours to that count (as I started
+        It on Tuesday) Will be finishing It soon, wether It counts or not. Thank
+        you!
       </div>
     </div>
   );
