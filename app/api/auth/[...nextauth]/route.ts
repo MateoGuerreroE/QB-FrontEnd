@@ -29,7 +29,7 @@ const handler = NextAuth({
             password,
           });
           return response.data;
-        } catch (error: any) {
+        } catch (error: unknown) {
           return null;
         }
       },

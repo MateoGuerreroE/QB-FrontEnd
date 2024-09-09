@@ -1,9 +1,9 @@
 import { Carousel } from "flowbite-react";
 import React from "react";
 
-type ComponentProps = {};
+// type ComponentProps = {};
 
-export default function MainBannerSection({}: ComponentProps) {
+export default function MainBannerSection() {
   return (
     <div className="w-full h-[600px]">
       <Carousel
