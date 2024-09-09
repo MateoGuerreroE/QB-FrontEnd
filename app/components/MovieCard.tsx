@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { CircularProgress } from "@nextui-org/react";
 import { formatDateString } from "../utils/formatDate";
+import { getRatingColor } from "../utils/getRatingColor";
 
 type ComponentProps = {
   title: string;
@@ -21,13 +22,6 @@ export default function MovieCard({
   releaseDate,
   dark = false,
 }: ComponentProps) {
-  const setRatingColor = (rating: number): "success" | "warning" | "danger" => {
-    if (rating >= 70) {
-      return "success";
-    } else if (rating >= 50) {
-      return "warning";
-    } else return "danger";
-  };
   const isTitleLong = title.length > 25;
   return (
     <div className="aspect-[2/3] max-w-[350px]">
@@ -77,7 +71,7 @@ export default function MovieCard({
                 aria-label="rating"
                 size="lg"
                 value={rating}
-                color={setRatingColor(rating)}
+                color={getRatingColor(rating)}
                 showValueLabel={true}
               />
             </div>
@@ -87,7 +81,7 @@ export default function MovieCard({
               }`}
             >
               <label className="text-sm text-center opacity-95 font-aksara">
-                Favorites
+                Favorite
               </label>
               <Image
                 src={
@@ -96,7 +90,7 @@ export default function MovieCard({
                 alt="favorite_icon"
                 width={500}
                 height={500}
-                className="w-11 h-11 self-center mt-0.5"
+                className="w-12 h-12 self-center mt-0.5"
               />
             </div>
           </div>

@@ -1,46 +1,35 @@
 import { Carousel } from "flowbite-react";
 import React from "react";
+import { MovieData } from "../types/MovieData";
+import { FetchResponse } from "../types/FetchResponse";
+import MovieBannerCard from "../components/MovieBannerCard";
 
 // type ComponentProps = {};
 
-export default function MainBannerSection() {
+export default async function MainBannerSection() {
+  const response = await fetch(
+    `${process.env.BE_URL}/utils/movies?path=popular`
+  );
+  const { data }: FetchResponse<MovieData[]> = await response.json();
+  const displayableResults = data.slice(0, 5);
   return (
     <div className="w-full h-[600px]">
       <Carousel
+        slideInterval={6000}
         indicators={false}
         leftControl=" "
         rightControl=" "
-        className="h-[80%]"
+        className="h-full"
+        theme={{
+          scrollContainer: {
+            base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth rounded-none",
+          },
+        }}
       >
-        <img
-          src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-          alt="..."
-        />
-        <img
-          src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-          alt="..."
-        />
-        <img
-          src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-          alt="..."
-        />
-        <img
-          src="https://flowbite.com/docs/images/carousel/carousel-4.svg"
-          alt="..."
-        />
-        <img
-          src="https://flowbite.com/docs/images/carousel/carousel-5.svg"
-          alt="..."
-        />
+        {displayableResults.map((movie) => (
+          <MovieBannerCard movie={movie} key={movie.id} />
+        ))}
       </Carousel>
-      <div className="text-white text-sm">
-        Hi evaluator! This site is under construction. 48 hours where at least
-        20 are spent sleeping/living are not enugh, mostly as theres no clue of
-        whats the project about or duration until you already start It, and Im
-        currently working, so theres about -16 hours to that count (as I started
-        It on Tuesday) Will be finishing It soon, wether It counts or not. Thank
-        you!
-      </div>
     </div>
   );
 }
