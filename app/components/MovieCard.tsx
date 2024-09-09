@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { CircularProgress } from "@nextui-org/react";
+import { formatDateString } from "../utils/formatDate";
 
 type ComponentProps = {
   title: string;
@@ -27,6 +28,7 @@ export default function MovieCard({
       return "warning";
     } else return "danger";
   };
+  const isTitleLong = title.length > 25;
   return (
     <div className="aspect-[2/3] max-w-[350px]">
       <div
@@ -38,20 +40,36 @@ export default function MovieCard({
           src={image}
           alt="movie_image"
           className="h-2/3 shadow-lg shadow-black/50"
-          width={500}
-          height={500}
+          width={700}
+          height={700}
         />
         <div
           className={`flex flex-col p-3 mt-2 gap-1 h-1/3 ${
             dark ? "text-white" : "text-black"
           }`}
         >
-          <div className="flex flex-col gap-2">
-            <h4 className="text-2xl font-helveticabold">{title}</h4>
-            <h5 className="font-aksara text-md opacity-95">{releaseDate}</h5>
+          <div
+            className={`flex flex-col ${
+              isTitleLong && title.length > 40 ? "gap-0" : "gap-1.5"
+            }`}
+          >
+            <h4
+              className={`${
+                isTitleLong ? "text-md" : "text-2xl"
+              } font-helveticabold`}
+            >
+              {title}
+            </h4>
+            <h5 className="font-aksara text-md opacity-95">
+              {formatDateString(releaseDate)}
+            </h5>
           </div>
           <div className="flex flex-row justify-center gap-16">
-            <div className="flex flex-col gap-2">
+            <div
+              className={`flex flex-col ${
+                isTitleLong && title.length > 40 ? "gap-0.5" : "gap-2"
+              }`}
+            >
               <label className="text-sm text-center opacity-95 font-aksara">
                 Rating
               </label>
@@ -63,7 +81,11 @@ export default function MovieCard({
                 showValueLabel={true}
               />
             </div>
-            <div className="flex flex-col gap-2">
+            <div
+              className={`flex flex-col ${
+                isTitleLong && title.length > 40 ? "gap-0.5" : "gap-2"
+              }`}
+            >
               <label className="text-sm text-center opacity-95 font-aksara">
                 Favorites
               </label>
