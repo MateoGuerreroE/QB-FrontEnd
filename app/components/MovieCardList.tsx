@@ -10,16 +10,11 @@ type ComponentProps = {
 };
 
 export default function MovieCardList({ movieList }: ComponentProps) {
-  const [activeMovie, setActiveMovie] = useState<number>(movieList[0].id);
+  //   const [activeMovie, setActiveMovie] = useState<number>(movieList[0].id);
   return (
-    <Swiper
-      spaceBetween={5}
-      slidesPerView={1}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
+    <Swiper spaceBetween={5} slidesPerView={1}>
       {movieList.map((movie) => (
-        <SwiperSlide>
+        <SwiperSlide key={movie.id}>
           <MovieCard
             title={movie.title}
             image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -29,24 +24,6 @@ export default function MovieCardList({ movieList }: ComponentProps) {
           />
         </SwiperSlide>
       ))}
-      {/* <SwiperSlide>
-        <MovieCard
-          title="Sample"
-          image="https://hs.sbcounty.gov/cn/Photo%20Gallery/_w/Sample%20Picture%20-%20Koala_jpg.jpg"
-          rating={50}
-          releaseDate="21 Jun. 2021"
-          dark={true}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <MovieCard
-          title="Sample"
-          image="https://hs.sbcounty.gov/cn/Photo%20Gallery/_w/Sample%20Picture%20-%20Koala_jpg.jpg"
-          rating={50}
-          releaseDate="21 Jun. 2021"
-          dark={true}
-        />
-      </SwiperSlide> */}
     </Swiper>
   );
 }

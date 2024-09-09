@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
-
 export default function NavBar() {
   return (
     <nav className=" bg-black w-full h-24">
