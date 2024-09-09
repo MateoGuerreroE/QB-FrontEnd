@@ -15,7 +15,7 @@ const helveticBold = localFont({
   weight: "100 900",
 });
 const aksara = localFont({
-  src: "./fonts/Aksara.otf",
+  src: "./fonts/Aksara.woff",
   variable: "--font-aksara",
   weight: "100 900",
 });

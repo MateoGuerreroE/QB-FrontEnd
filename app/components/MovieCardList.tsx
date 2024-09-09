@@ -20,6 +20,7 @@ export default function MovieCardList({ movieList }: ComponentProps) {
             image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             rating={Math.round((movie.vote_average / 10) * 100)}
             releaseDate={movie.release_date}
+            isFavorite={false}
             dark={true}
           />
         </SwiperSlide>
