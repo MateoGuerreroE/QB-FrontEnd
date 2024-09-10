@@ -1,3 +1,4 @@
+import FavMovieSection from "./sections/FavMovieSection";
 import MainBannerSection from "./sections/MainBannerSection";
 import MovieListSection from "./sections/MovieListSection";
 
@@ -10,7 +11,7 @@ export default function Home() {
         <MovieListSection title="Now Playing" path="now_playing" />
         <MovieListSection title="Upcoming" path="upcoming" />
         <MovieListSection title="Top Rated" path="top_rated" />
-        <MovieListSection title="Favorites" />
+        <FavMovieSection title="Favorites" />
       </div>
     </div>
   );
