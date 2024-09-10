@@ -16,5 +16,5 @@ export const useStore = create<GlobalState>((set) => ({
   toggleIsLogged: () => set((state) => ({ isLogged: !state.isLogged })),
   toggleLoginVisible: () =>
     set((state) => ({ isLoginVisible: !state.isLoginVisible })),
-  setFavorites: (val: string[]) => set((state) => ({ favorites: val })),
+  setFavorites: (val: string[]) => set(() => ({ favorites: val })),
 }));

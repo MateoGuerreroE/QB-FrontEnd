@@ -1,4 +1,4 @@
-import { ISODateString, User } from "next-auth";
+import { User } from "next-auth";
 import { DefaultJWT } from "next-auth/jwt";
 
 export interface SignedUserResponse extends User {

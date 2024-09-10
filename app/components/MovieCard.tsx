@@ -22,6 +22,7 @@ export default function MovieCard({
   releaseDate,
   dark = false,
 }: ComponentProps) {
+  const handleFavChange = () => {};
   const isTitleLong = title.length > 23;
   return (
     <div className="aspect-[2/3] max-w-[350px]">

@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStore } from "../store/zustandStore";
+import { Session } from "next-auth";
 
 export default function MovieFavCardList() {
   const session = useSession();
@@ -18,7 +19,8 @@ export default function MovieFavCardList() {
     const fetchData = async () => {
       try {
         if (session.data && isLogged) {
-          const token = (session.data.user as any)?.accessToken;
+          const token = (session.data.user as Session & { accessToken: string })
+            ?.accessToken;
           const favUrl = process.env.NEXT_PUBLIC_BE_URL + "/users/favorites";
           const { data } = await axios.get(favUrl, {
             headers: { Authorization: `Bearer ${token}` },
@@ -31,7 +33,7 @@ export default function MovieFavCardList() {
           });
           setMovieData(movieResponse.data);
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.log(error);
       }
     };
