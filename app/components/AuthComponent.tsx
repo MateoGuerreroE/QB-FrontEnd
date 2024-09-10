@@ -1,6 +1,7 @@
 "use client";
 import { Button, Input, Tab, Tabs } from "@nextui-org/react";
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function AuthComponent() {
   const [selected, setSelected] = useState<string>("signup");
@@ -21,6 +22,7 @@ export default function AuthComponent() {
           variant="light"
           className="bg-[#262626] rounded-xl"
         >
+          // TODO DECOMPOSE COMPONENTS LOGIN/SIGNUP TO SECTORIZE CONTROLLED FORM
           <Tab key="signup" title="Sign up" className="font-titles text-white">
             <div className="flex flex-col items-center mt-10">
               <h2 className="text-4xl text-center">
