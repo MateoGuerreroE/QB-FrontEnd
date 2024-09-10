@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import ProfileComponent from "./profileComponent";
 
 export default function NavBar() {
   return (
@@ -15,13 +16,7 @@ export default function NavBar() {
         <div id="options" className="hidden">
           {/* ADD CLIENT COMPONENT HERE FOR OPTS*/}
         </div>
-        <Image
-          className="w-8 h-8 self-center"
-          src={"icons/user_icon.svg"}
-          width={0}
-          height={0}
-          alt="user icon"
-        />
+        <ProfileComponent />
       </div>
     </nav>
   );

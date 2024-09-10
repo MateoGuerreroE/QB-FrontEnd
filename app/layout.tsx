@@ -3,11 +3,17 @@ import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "./components/navBar";
 import { NextUIProvider } from "@nextui-org/react";
+import { IBM_Plex_Sans } from "next/font/google";
 
 const helvetic = localFont({
   src: "./fonts/Helvetica.ttf",
   variable: "--font-helvetica",
   weight: "100 900",
+});
+const titles = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: "600",
+  variable: "--font-titles",
 });
 const helveticBold = localFont({
   src: "./fonts/Helvetica-Bold.ttf",
@@ -33,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${helvetic.variable} ${helveticBold.variable} ${aksara.variable} antialiased`}
+        className={`${helvetic.variable} ${helveticBold.variable} ${aksara.variable} ${titles.variable} antialiased`}
       >
         <NextUIProvider>
           <NavBar />

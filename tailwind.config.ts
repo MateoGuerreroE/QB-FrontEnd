@@ -20,6 +20,7 @@ const config: Config = {
         helvetica: "var(--font-helvetica)",
         helveticabold: "var(--font-helvetica-bold)",
         aksara: "var(--font-aksara)",
+        titles: "var(--font-titles)",
       },
       colors: {
         background: "var(--background)",
