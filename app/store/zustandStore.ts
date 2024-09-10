@@ -1,19 +1,20 @@
 import { create } from "zustand";
-import { UserData } from "../types/UserData";
 
 interface GlobalState {
-  user: UserData | null;
   isLoginVisible: boolean;
-  setUser: (user: UserData) => void;
-  removeUser: () => void;
+  isLogged: boolean;
+  favorites: string[];
+  toggleIsLogged: () => void;
   toggleLoginVisible: () => void;
+  setFavorites: (val: string[]) => void;
 }
 
 export const useStore = create<GlobalState>((set) => ({
-  user: null,
+  isLogged: false,
   isLoginVisible: false,
-  setUser: (user: UserData) => set(() => ({ user })),
-  removeUser: () => set(() => ({ user: null })),
+  favorites: [],
+  toggleIsLogged: () => set((state) => ({ isLogged: !state.isLogged })),
   toggleLoginVisible: () =>
     set((state) => ({ isLoginVisible: !state.isLoginVisible })),
+  setFavorites: (val: string[]) => set((state) => ({ favorites: val })),
 }));
