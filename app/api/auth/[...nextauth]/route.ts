@@ -1,6 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession, Session, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { UserData } from "@/app/types/UserData";
+import { CustomJWT, SignedUserResponse } from "../types";
 
 const handler = NextAuth({
   providers: [
@@ -28,14 +30,38 @@ const handler = NextAuth({
             emailAddress: email,
             password,
           });
-          return response.data;
+          const user: UserData = response.data;
+          return {
+            id: user.userId,
+            email: user.emailAddress,
+            token: user.token,
+          };
         } catch (error: unknown) {
           return null;
         }
       },
     }),
   ],
-  callbacks: {}, // TODO IMPLEMENT HERE TYPED SESSION AND JWT BASED ON DATA STRUCT,
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    jwt: ({ token, user }) => {
+      if (user) {
+        token.accessToken = (user as SignedUserResponse).token;
+      }
+      return token;
+    },
+    session: ({ session, token }): Session => {
+      session.user = {
+        name: token.sub,
+        email: token.email,
+        // @ts-ignore
+        accessToken: token.accessToken as CustomJWT,
+      };
+      return session;
+    },
+  }, // TODO IMPLEMENT HERE TYPED SESSION AND JWT BASED ON DATA STRUCT,
   // CONSIDER HERE MFA FLAG FOR SECOND AUTH STEP
   secret: process.env.NEXTAUTH_SECRET,
 });
