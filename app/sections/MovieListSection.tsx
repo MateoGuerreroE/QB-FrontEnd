@@ -4,7 +4,7 @@ import MovieCardList from "../components/MovieCardList";
 type ComponentProps = {
   title: string;
   darkMode?: boolean;
-  path?: "popular" | "now_playing" | "top_rated";
+  path?: "popular" | "now_playing" | "top_rated" | "upcoming";
 };
 
 export default async function MovieListSection({
