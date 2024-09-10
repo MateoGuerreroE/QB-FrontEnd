@@ -1,4 +1,3 @@
-import AuthSection from "./sections/AuthSection";
 import MainBannerSection from "./sections/MainBannerSection";
 import MovieListSection from "./sections/MovieListSection";
 

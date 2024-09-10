@@ -1,4 +1,4 @@
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 
 import React from "react";
 import CloseLoginButton from "../components/CloseLoginButton";

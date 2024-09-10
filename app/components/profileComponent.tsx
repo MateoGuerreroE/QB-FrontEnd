@@ -5,7 +5,7 @@ import AuthSection from "../sections/AuthSection";
 import Image from "next/image";
 
 export default function ProfileComponent() {
-  const { user, isLoginVisible, toggleLoginVisible, setUser } = useStore();
+  const { user, isLoginVisible, toggleLoginVisible } = useStore();
   const handleClick = () => {
     if (user) {
     } else {
