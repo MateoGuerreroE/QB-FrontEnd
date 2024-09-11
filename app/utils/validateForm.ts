@@ -147,6 +147,5 @@ export const validateRegisterForm = (
   if (!validations.repeatpassword?.equal && regObject.repeatpassword) {
     response.repeatpassword = "Passwords are not the same";
   }
-  console.log(response);
   return response;
 };

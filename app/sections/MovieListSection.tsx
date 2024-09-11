@@ -1,21 +1,34 @@
 import React from "react";
 import MovieCardList from "../components/MovieCardList";
+import axios from "axios";
+import { MovieData } from "../types/MovieData";
+import { Response } from "../types/AbstractResponse";
 
 type ComponentProps = {
   title: string;
   darkMode?: boolean;
-  path?: "popular" | "now_playing" | "top_rated" | "upcoming";
+  path?: "popular" | "now_playing" | "top_rated" | "upcoming" | "recommended";
+  recommendedId?: string;
 };
 
 export default async function MovieListSection({
   title,
   darkMode = true,
   path,
+  recommendedId,
 }: ComponentProps) {
-  const res = await fetch(
-    `${process.env.BE_URL}/utils/movies${path ? `?path=${path}` : ""}`
-  );
-  const data = await res.json();
+  let movieList: MovieData[];
+  if (path === "recommended" && recommendedId) {
+    const { data } = await axios.get<Response<MovieData[]>>(
+      process.env.BE_URL + `/movie/recommendations/${recommendedId}`
+    );
+    movieList = data.data;
+  } else {
+    const { data } = await axios.get<Response<MovieData[]>>(
+      process.env.BE_URL + `/utils/movies${path ? `?path=${path}` : ""}`
+    );
+    movieList = data.data;
+  }
 
   return (
     <section
@@ -27,7 +40,7 @@ export default async function MovieListSection({
         <h3 className="font-helveticabold text-3xl">{title}</h3>
       </div>
       <div className="flex flex-row jusitfy-center">
-        <MovieCardList movieList={data.data} />
+        <MovieCardList movieList={movieList ?? []} />
       </div>
     </section>
   );

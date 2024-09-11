@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 import { UserData } from "@/app/types/UserData";
 import { CustomJWT, SignedUserResponse } from "../types";
+import { Response } from "@/app/types/AbstractResponse";
 
 const handler = NextAuth({
   providers: [
@@ -26,11 +27,11 @@ const handler = NextAuth({
         }
         const url = process.env.BE_URL + "/auth/login";
         try {
-          const { data: response } = await axios.post(url, {
+          const { data: response } = await axios.post<Response<UserData>>(url, {
             emailAddress: email,
             password,
           });
-          const user: UserData = response.data;
+          const user = response.data;
           return {
             id: user.userId,
             email: user.emailAddress,

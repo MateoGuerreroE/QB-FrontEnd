@@ -7,6 +7,7 @@ import { MovieData } from "../types/MovieData";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStore } from "../store/zustandStore";
+import { Response } from "../types/AbstractResponse";
 
 export default function MovieFavCardList() {
   const { setFavorites, favorites, userId, token, isLogged } = useStore();
@@ -17,13 +18,15 @@ export default function MovieFavCardList() {
       try {
         if (userId && isLogged) {
           const favUrl = process.env.NEXT_PUBLIC_BE_URL + "/users/favorites";
-          const { data } = await axios.get(favUrl, {
+          const { data } = await axios.get<Response<string[]>>(favUrl, {
             headers: { Authorization: `Bearer ${token}` },
           });
           const movieList = data.data;
           setFavorites(movieList);
           const movieUrl = process.env.NEXT_PUBLIC_BE_URL + "/utils/movies/ids";
-          const { data: movieResponse } = await axios.post(movieUrl, {
+          const { data: movieResponse } = await axios.post<
+            Response<MovieData[]>
+          >(movieUrl, {
             ids: movieList,
           });
           setMovieData(movieResponse.data);
