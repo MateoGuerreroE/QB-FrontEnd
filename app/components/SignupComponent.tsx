@@ -59,9 +59,10 @@ export default function SignupComponent() {
       });
       toggleLoginVisible();
       document.body.style.overflow = "auto";
-    } catch (error: any) {
+    } catch (error: unknown) {
       Swal.fire({
         title: "Oops!",
+        // @ts-expect-error stupid vercel rules
         text: error.message,
         icon: "error",
         background: "#262626",

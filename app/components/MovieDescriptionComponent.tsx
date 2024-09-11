@@ -13,5 +13,6 @@ export default function MovieDescriptionComponent({
   isFavorite,
   trailer,
 }: ComponentProps) {
+  console.log(movie, isFavorite, trailer);
   return <div>MovieDescriptionComponent</div>;
 }
