@@ -1,7 +1,9 @@
+"use client";
 import { Tab, Tabs } from "@nextui-org/react";
 import React from "react";
 import SignupComponent from "./SignupComponent";
 import LoginComponent from "./LoginComponent";
+import { SessionProvider } from "next-auth/react";
 
 export default function AuthComponent() {
   return (
@@ -19,11 +21,11 @@ export default function AuthComponent() {
           variant="light"
           className="bg-[#262626] rounded-xl"
         >
-          <Tab key="signup" title="Sign up" className="font-titles text-white">
-            <SignupComponent />
-          </Tab>
           <Tab key="login" title="Log In" className="font-titles">
             <LoginComponent />
+          </Tab>
+          <Tab key="signup" title="Sign up" className="font-titles text-white">
+            <SignupComponent />
           </Tab>
         </Tabs>
       </div>

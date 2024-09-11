@@ -1,8 +1,8 @@
 "use client";
 import { Button, Input } from "@nextui-org/react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { validateLoginForm } from "../utils/validateForm";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useStore } from "../store/zustandStore";
 import Swal from "sweetalert2";
 
@@ -12,7 +12,16 @@ interface FormValues {
 }
 
 export default function LoginComponent() {
-  const { toggleLoginVisible, toggleIsLogged } = useStore();
+  const {
+    toggleLoginVisible,
+    toggleIsLogged,
+    isLogged,
+    setUserId,
+    setToken,
+    userId,
+    token,
+  } = useStore();
+  const { data } = useSession();
 
   const [loginValues, setLoginValues] = useState<FormValues>({
     email: "",
@@ -31,6 +40,13 @@ export default function LoginComponent() {
       ...validateLoginForm({ ...loginValues, [e.target.id]: e.target.value }),
     });
   };
+  useEffect(() => {
+    if (data && isLogged && !userId) {
+      const user = data.user as { name: string; accessToken: string };
+      setUserId(user.name);
+      setToken(user.accessToken);
+    }
+  }, [isLogged]);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

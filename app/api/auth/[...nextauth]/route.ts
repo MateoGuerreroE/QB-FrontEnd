@@ -56,7 +56,7 @@ const handler = NextAuth({
       session.user = {
         name: token.sub,
         email: token.email,
-        // @ts-ignore
+        // @ts-expect-error
         accessToken: token.accessToken as CustomJWT,
       };
       return session;

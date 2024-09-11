@@ -17,6 +17,7 @@ export default function MovieCardList({ movieList }: ComponentProps) {
       {movieList.map((movie) => (
         <SwiperSlide key={movie.id}>
           <MovieCard
+            id={movie.id.toString()}
             title={movie.title}
             image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             rating={Math.round((movie.vote_average / 10) * 100)}
