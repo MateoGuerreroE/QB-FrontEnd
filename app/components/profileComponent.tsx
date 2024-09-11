@@ -54,7 +54,7 @@ export default function ProfileComponent() {
         onClick={() => handleClick()}
       >
         <Image
-          className="w-8 self-center"
+          className="w-8 lg:w-10 self-center"
           src={`${isLogged ? "/LoggedProfile.jpg" : "/icons/user_icon.svg"}`}
           width={500}
           height={500}

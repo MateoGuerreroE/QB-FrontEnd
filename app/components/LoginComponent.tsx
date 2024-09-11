@@ -80,9 +80,14 @@ export default function LoginComponent() {
     }
   };
   return (
-    <div className="flex flex-col items-center mt-10">
-      <h2 className="text-4xl text-center">Welcome back to Quickbet Movies!</h2>
-      <form className="flex flex-col w-full pt-10 gap-3" onSubmit={handleLogin}>
+    <div className="flex flex-col items-center mt-10 lg:justify-center w-full ">
+      <h2 className="text-center lg:hidden sm:text-4xl text-xl">
+        Welcome back to Quickbet Movies!
+      </h2>
+      <form
+        className="flex flex-col w-full lg:h-full pt-10 sm:gap-3"
+        onSubmit={handleLogin}
+      >
         <p className="font-aksara text-center">We love having you back 🍿</p>
         <Input
           id="email"
@@ -133,7 +138,7 @@ export default function LoginComponent() {
           Continue
         </Button>
       </form>
-      <div className="mt-20 flex justify-center">
+      <div className="mt-10 normalphone:mt-20 flex justify-center">
         <p className="font-aksara text-sm text-center w-[80%]">
           For any questions, please hesitate reaching out.
         </p>

@@ -13,7 +13,26 @@ type ComponentProps = {
 export default function MovieCardList({ movieList }: ComponentProps) {
   const { favorites } = useStore();
   return (
-    <Swiper spaceBetween={5} slidesPerView={1}>
+    <Swiper
+      spaceBetween={5}
+      breakpoints={{
+        640: {
+          slidesPerView: 1,
+        },
+        750: {
+          slidesPerView: 2,
+        },
+        1450: {
+          slidesPerView: 3,
+        },
+        1850: {
+          slidesPerView: 4,
+        },
+        2320: {
+          slidesPerView: 5,
+        },
+      }}
+    >
       {movieList.map((movie) => (
         <SwiperSlide key={movie.id}>
           <MovieCard

@@ -72,13 +72,15 @@ export default function SignupComponent() {
     }
   };
   return (
-    <div className="flex flex-col items-center mt-10">
-      <h2 className="text-4xl text-center">Welcome to Quickbet Movies!</h2>
+    <div className="flex flex-col items-center mt-10 w-full">
+      <h2 className="text-center lg:hidden sm:text-4xl text-xl">
+        Welcome to Quickbet Movies!
+      </h2>
       <form
-        className="flex flex-col w-full pt-10 gap-3"
+        className="flex flex-col w-full pt-10 sm:gap-3"
         onSubmit={handleRegister}
       >
-        <p className="font-aksara text-center">
+        <p className="font-aksara text-center lg:hidden">
           Ready to unlock a universe of cinematic delights? 🎬
         </p>
         <Input
@@ -149,6 +151,9 @@ export default function SignupComponent() {
           Register with your Email
         </Button>
       </form>
+      <p className="font-aksara hidden lg:block text-sm text-center mt-10">
+        No questions? Great!
+      </p>
     </div>
   );
 }

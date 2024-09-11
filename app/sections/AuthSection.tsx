@@ -16,10 +16,9 @@ export default function AuthSection({ isVisible }: ComponentProps) {
       }`}
     >
       <div className="w-full h-full flex flex-col pt-24 items-center">
-        <Card className="w-[80%] h-[80vh] bg-black/20 backdrop-filter backdrop-blur-xl rounded-xl border-white/20 border-1 p-3">
+        <Card className="w-[80%] h-[80vh] bg-black/20 backdrop-filter max-h-[1000px] backdrop-blur-xl rounded-xl border-white/20 border-1 p-3 lg:p-1">
           <CardBody className="flex flex-col items-center">
-            <CloseLoginButton />
-            <AuthComponent />
+            {isVisible && <AuthComponent />}
           </CardBody>
         </Card>
       </div>
