@@ -21,7 +21,7 @@ export default function MovieBannerCard({ movie }: ComponentProps) {
         <div className="flex flex-col gap-3 p-5 md:p-10 md:h-[300px] pt-16 bg-gradient-to-t from-black/100 via-70% via-black/70 md:via-40% md:via-black/100 to-transparent">
           <div className="max-h-[500px] self-center flex flex-col md:gap-5 gap-3">
             <div className="flex flex-row justify-between">
-              <h3 className="w-[80%] font-titles text-3xl self-center">
+              <h3 className="w-[80%] font-titles text-3xl lg:text-5xl self-center">
                 {movie.title}
               </h3>
               <div className="flex flex-col md:h-[80px] lg:h-[100px] justify-center">
