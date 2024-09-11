@@ -36,7 +36,6 @@ export default function MovieCard({
   } = useStore();
   const handleFavChange = (id: string) => {
     if (isLogged && userId) {
-      console.log(id);
       let newFavorites = [];
       if (isFavorite) {
         newFavorites = favorites.filter((fav) => fav !== id);
@@ -61,7 +60,6 @@ export default function MovieCard({
       }, 700);
     }
   };
-  // console.log(isLogged, userId);
   const isTitleLong = title.length > 23;
   return (
     <div className="aspect-[2/3] max-w-[350px]">

@@ -8,15 +8,21 @@ export default function NavBar() {
   return (
     <nav className=" bg-black w-full h-24">
       <div className="w-full h-full flex flex-row p-5 justify-between">
-        <Image
-          src={"/logo.JPG"}
-          alt="logo"
-          width={1000}
-          height={500}
-          className="w-52"
-        />
-        <div id="options" className="hidden">
-          {/* ADD CLIENT COMPONENT HERE FOR OPTS*/}
+        <div className="flex flex-row gap-24">
+          <Image
+            src={"/logo.JPG"}
+            alt="logo"
+            width={1000}
+            height={500}
+            className="w-52"
+          />
+          <div
+            id="options"
+            className="hidden md:flex fle-xrow self-center gap-16 items-start"
+          >
+            <h4 className="font-helvetica text-lg">Popular</h4>
+            <h4 className="font-helvetica text-lg">Favorites</h4>
+          </div>
         </div>
         <SessionProvider>
           <ProfileComponent />
