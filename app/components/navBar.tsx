@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import ProfileComponent from "./profileComponent";
+import { SessionProvider } from "next-auth/react";
 
 export default function NavBar() {
   return (
@@ -16,7 +18,9 @@ export default function NavBar() {
         <div id="options" className="hidden">
           {/* ADD CLIENT COMPONENT HERE FOR OPTS*/}
         </div>
-        <ProfileComponent />
+        <SessionProvider>
+          <ProfileComponent />
+        </SessionProvider>
       </div>
     </nav>
   );

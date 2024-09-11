@@ -4,8 +4,11 @@ import Image from "next/image";
 import { CircularProgress } from "@nextui-org/react";
 import { formatDateString } from "../utils/formatDate";
 import { getRatingColor } from "../utils/getRatingColor";
+import { useStore } from "../store/zustandStore";
+import axios from "axios";
 
 type ComponentProps = {
+  id: string;
   title: string;
   image: string;
   isFavorite?: boolean;
@@ -15,6 +18,7 @@ type ComponentProps = {
 };
 
 export default function MovieCard({
+  id,
   title,
   image,
   isFavorite = false,
@@ -22,6 +26,42 @@ export default function MovieCard({
   releaseDate,
   dark = false,
 }: ComponentProps) {
+  const {
+    setFavorites,
+    favorites,
+    isLogged,
+    userId,
+    token,
+    toggleLoginVisible,
+  } = useStore();
+  const handleFavChange = (id: string) => {
+    if (isLogged && userId) {
+      console.log(id);
+      let newFavorites = [];
+      if (isFavorite) {
+        newFavorites = favorites.filter((fav) => fav !== id);
+      } else {
+        newFavorites = [...favorites, id];
+      }
+      setFavorites(newFavorites);
+      // Async no matter here, It would be updated on the background
+      axios.post(
+        process.env.NEXT_PUBLIC_BE_URL + `/users/update/${userId}`,
+        { favorites: newFavorites },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      toggleLoginVisible();
+      setTimeout(() => {
+        document.body.style.overflow = "hidden";
+      }, 700);
+    }
+  };
+  // console.log(isLogged, userId);
   const isTitleLong = title.length > 23;
   return (
     <div className="aspect-[2/3] max-w-[350px]">
@@ -90,13 +130,14 @@ export default function MovieCard({
                 Favorite
               </label>
               <Image
+                onClick={() => handleFavChange(id)}
                 src={
                   isFavorite ? `/icons/heart-filled.svg` : `/icons/heart.svg`
                 }
                 alt="favorite_icon"
                 width={500}
                 height={500}
-                className="w-12 h-12 self-center mt-0.5"
+                className="w-12 h-12 self-center mt-0.5 hover:cursor-pointer"
               />
             </div>
           </div>
