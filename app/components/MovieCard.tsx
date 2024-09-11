@@ -6,8 +6,6 @@ import { formatDateString } from "../utils/formatDate";
 import { getRatingColor } from "../utils/getRatingColor";
 import { useStore } from "../store/zustandStore";
 import axios from "axios";
-import Swal from "sweetalert2";
-import { s } from "framer-motion/client";
 
 type ComponentProps = {
   id: string;

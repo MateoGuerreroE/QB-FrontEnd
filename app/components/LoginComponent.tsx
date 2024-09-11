@@ -19,7 +19,6 @@ export default function LoginComponent() {
     setUserId,
     setToken,
     userId,
-    token,
   } = useStore();
   const { data } = useSession();
 

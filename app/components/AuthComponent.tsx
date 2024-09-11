@@ -3,7 +3,6 @@ import { Tab, Tabs } from "@nextui-org/react";
 import React from "react";
 import SignupComponent from "./SignupComponent";
 import LoginComponent from "./LoginComponent";
-import { SessionProvider } from "next-auth/react";
 
 export default function AuthComponent() {
   return (
