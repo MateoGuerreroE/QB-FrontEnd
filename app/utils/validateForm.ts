@@ -70,6 +70,15 @@ function abstractValidator<T extends object>(
   return validationResponse;
 }
 
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+/**
+ * At least 8 characters
+ * At least 1 mayus
+ * At least 1 special character
+ */
+const strongPasswordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
 type LoginObject = {
   email: string | null;
   password: string | null;
@@ -82,11 +91,10 @@ export const validateLoginForm = (loginObject: LoginObject): LoginObject => {
   };
   const validationOptions: Record<keyof LoginObject, ValidationOptions> = {
     email: {
-      regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      regex: emailRegex,
     },
     password: {
-      regex:
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      regex: strongPasswordRegex,
     },
   };
   const validations = abstractValidator(loginObject, validationOptions);
@@ -96,5 +104,49 @@ export const validateLoginForm = (loginObject: LoginObject): LoginObject => {
   if (!validations.password?.regex && loginObject.password) {
     response.password = "Invalid password";
   }
+  return response;
+};
+
+type RegisterObject = {
+  email: string | null;
+  repeatpassword: string | null;
+  password: string | null;
+};
+
+export const validateRegisterForm = (
+  regObject: RegisterObject
+): RegisterObject => {
+  const response: RegisterObject = {
+    email: null,
+    repeatpassword: null,
+    password: null,
+  };
+  const validationOptions: Record<keyof RegisterObject, ValidationOptions> = {
+    email: {
+      regex: emailRegex,
+    },
+    repeatpassword: {
+      regex: strongPasswordRegex,
+      equal: regObject.password,
+    },
+    password: {
+      regex: strongPasswordRegex,
+    },
+  };
+
+  const validations = abstractValidator(regObject, validationOptions);
+  if (!validations.email?.regex && regObject.email) {
+    response.email = "Invalid email";
+  }
+  if (!validations.password?.regex && regObject.password) {
+    response.password = "Password not strong enough";
+  }
+  if (!validations.repeatpassword?.regex && regObject.repeatpassword) {
+    response.repeatpassword = "Password not strong enough";
+  }
+  if (!validations.repeatpassword?.equal && regObject.repeatpassword) {
+    response.repeatpassword = "Passwords are not the same";
+  }
+  console.log(response);
   return response;
 };
