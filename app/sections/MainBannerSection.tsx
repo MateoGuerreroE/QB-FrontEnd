@@ -13,7 +13,7 @@ export default async function MainBannerSection() {
   const { data }: FetchResponse<MovieData[]> = await response.json();
   const displayableResults = data.slice(0, 5);
   return (
-    <div className="w-full h-[600px] md:h-[800px] lg:">
+    <div className="w-full h-[600px] md:h-[750px] lg:">
       <Carousel
         slideInterval={4000}
         indicators={false}
